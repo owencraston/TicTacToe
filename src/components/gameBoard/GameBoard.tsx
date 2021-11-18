@@ -7,16 +7,23 @@ type PlayOptions = typeof CIRCLE | typeof CROSS | typeof EMPTY;
 
 interface Props {
   boardState: Array<PlayOptions>;
-  onPress: () => void;
+  onPress: (index: number) => void;
 }
 
-const GameBoard = ({boardState}: Props) => {
+const GameBoard = ({boardState, onPress}: Props) => {
   const renderRow = (number: number) => {
     const tiles = [];
     for (let i = 0; i < 3; ++i) {
       const index: number = number * 3 + i;
 
-      tiles.push(<Tile key={i} shape={boardState[index]} index={index} />);
+      tiles.push(
+        <Tile
+          key={i}
+          index={index}
+          shape={boardState[index]}
+          onPress={onPress}
+        />,
+      );
     }
 
     return tiles;
