@@ -1,0 +1,10 @@
+export const CIRCLE = 'O';
+export const CROSS = 'X';
+export const EMPTY = '-';
+export const DRAW = 'draw';
+export const USER = CIRCLE;
+export const AI = CROSS;
+export const SIZE = 100;
+export const WIDTH = 8;
+export const PADDING = 20;
+export type PlayOptions = typeof CIRCLE | typeof CROSS | typeof EMPTY;
