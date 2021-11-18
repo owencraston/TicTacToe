@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {SafeAreaView, Text, StyleSheet, Button} from 'react-native';
 import GameBoard from '../../components/gameBoard/GameBoard';
 import {EMPTY, PlayOptions, USER, AI} from '../../constants';
 
@@ -38,11 +38,19 @@ const Home = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Text>Tic Tac Toe</Text>
       <GameBoard boardState={boardState} onPress={() => onPress} />
+      <Button title="Play again?" onPress={() => {}} disabled={true} />
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default Home;

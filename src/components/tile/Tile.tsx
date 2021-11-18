@@ -19,9 +19,9 @@ const Tile = ({index, shape, onPress}: Props) => {
   const getShape = () => {
     switch (shape) {
       case CIRCLE:
-        return <Circle colour="white" />;
+        return <Circle colour="black" />;
       case CROSS:
-        return <Cross colour="white" />;
+        return <Cross colour="black" />;
       default:
         return <Text style={styles.text} onPress={handlePress} />;
     }
