@@ -7,17 +7,23 @@ import {Cross} from '../cross';
 interface Props {
   index: number;
   shape: PlayOptions;
+  onPress: (index: number) => void;
 }
 
-const Tile = ({shape}: Props) => {
+const Tile = ({index, shape, onPress}: Props) => {
+  const handlePress = () => {
+    console.log(`Pressing tile at index: ${index}`);
+    onPress(index);
+  };
+
   const getShape = () => {
     switch (shape) {
       case CIRCLE:
-        return <Circle colour="white" />;
+        return <Circle colour="black" />;
       case CROSS:
-        return <Cross colour="white" />;
+        return <Cross colour="black" />;
       default:
-        return <Text style={styles.text} />;
+        return <Text style={styles.text} onPress={handlePress} />;
     }
   };
 
