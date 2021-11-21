@@ -12,7 +12,6 @@ interface Props {
 
 const Tile = ({index, shape, onPress}: Props) => {
   const handlePress = () => {
-    console.log(`Pressing tile at index: ${index}`);
     onPress(index);
   };
 
