@@ -7,7 +7,7 @@ type PlayOptions = typeof CIRCLE | typeof CROSS | typeof EMPTY;
 
 interface Props {
   boardState: Array<PlayOptions>;
-  onPress: () => void;
+  onPress: (index: number) => void;
 }
 
 const GameBoard = ({boardState, onPress}: Props) => {

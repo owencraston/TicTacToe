@@ -12,7 +12,6 @@ interface Props {
 
 const Tile = ({index, shape, onPress}: Props) => {
   const handlePress = () => {
-    console.log(`Pressing tile at index: ${index}`);
     onPress(index);
   };
 
@@ -45,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Tile;
+export default React.memo(Tile);
