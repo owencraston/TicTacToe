@@ -20,6 +20,8 @@ const Home = () => {
     if (boardState[index] !== EMPTY) {
       console.log('Someone has already played here');
       return;
+    } else {
+      console.log(`playing at index ${index}`);
     }
     const board = boardState;
     board[index] = figure;
@@ -40,7 +42,7 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text>Tic Tac Toe</Text>
-      <GameBoard boardState={boardState} onPress={() => onPress} />
+      <GameBoard boardState={boardState} onPress={onPress} />
       <Button title="Play again?" onPress={() => {}} disabled={true} />
     </SafeAreaView>
   );
