@@ -1,8 +1,9 @@
 import React, {useCallback} from 'react';
-import {SafeAreaView, Text, StyleSheet, Button} from 'react-native';
+import {SafeAreaView, Text, StyleSheet} from 'react-native';
 import GameBoard from '../../components/gameBoard/GameBoard';
-import {useGameState} from '../../components/hooks';
-import {EMPTY, PlayOptions, USER} from '../../constants';
+import {AI, EMPTY, PADDING, PlayOptions, USER} from '../../constants';
+import {getNextAIMove} from '../../engine/getNextAIMove';
+import {useGameState} from '../../hooks';
 
 const Home = () => {
   const [gameState, setBoardState] = useGameState();
@@ -23,22 +24,19 @@ const Home = () => {
 
   const onPress = useCallback(
     (index: number) => {
+      // users move
       populateTile(index, USER);
+      // ai's move
+      const play = getNextAIMove(boardState);
+      populateTile(play, AI);
     },
-    [populateTile],
+    [boardState, populateTile],
   );
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Tic Tac Toe</Text>
+      <Text style={styles.title}>Tic Tac Toe</Text>
       <GameBoard boardState={boardState} onPress={onPress} />
-      <Button
-        title="Play again?"
-        onPress={() => {}}
-        disabled={
-          gameState.status === 'USER_TURN' || gameState.status === 'AI_TURN'
-        }
-      />
     </SafeAreaView>
   );
 };
@@ -47,6 +45,11 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: '700',
+    padding: PADDING,
   },
 });
 
