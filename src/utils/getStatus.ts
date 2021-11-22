@@ -24,11 +24,15 @@ const isDraw = (board: PlayOptions[]): boolean => {
   return !board.some(figure => figure === EMPTY);
 };
 
-export const getStatus = (board: PlayOptions[]): Status => {
+const whosTurn = (playCount: number): 'USER_TURN' | 'AI_TURN' => {
+  return playCount % 2 === 0 ? 'USER_TURN' : 'AI_TURN';
+};
+
+export const getStatus = (board: PlayOptions[], playCount: number): Status => {
   if (isDraw(board)) {
     return 'DRAW';
   } else {
-    let result: Status = 'PLAYING';
+    let result: Status = 'USER_TURN';
     let winner: PlayOptions | null = null;
     for (let i = 0; i < winStates.length; ++i) {
       let figure = board[winStates[i][0]];
@@ -39,7 +43,7 @@ export const getStatus = (board: PlayOptions[]): Status => {
     }
     switch (winner) {
       case null:
-        result = 'PLAYING';
+        result = whosTurn(playCount);
         break;
       case AI:
         result = 'AI_WON';
