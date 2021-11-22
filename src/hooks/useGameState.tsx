@@ -1,7 +1,7 @@
 import {useCallback, useState} from 'react';
-import {EMPTY, PlayOptions} from '../../constants';
-
-export type Status = 'USER_TURN' | 'AI_TURN' | 'AI_WON' | 'USER_WON' | 'DRAW';
+import {EMPTY, PlayOptions} from '../constants';
+import {getStatus} from '../utils/getStatus';
+export type Status = 'PLAYING' | 'AI_WON' | 'USER_WON' | 'DRAW';
 
 interface State {
   boardState: PlayOptions[];
@@ -19,8 +19,7 @@ const initialGameState: Array<PlayOptions> = [
   EMPTY,
   EMPTY,
 ];
-
-const initialStatus: Status = 'USER_TURN';
+const initialStatus: Status = 'PLAYING';
 
 const initialState: State = {
   boardState: initialGameState,
@@ -31,7 +30,8 @@ const useGameState = (): [State, (boardState: PlayOptions[]) => void] => {
   const [gameState, setGameState] = useState<State>(initialState);
 
   const setBoardState = useCallback((boardState: PlayOptions[]) => {
-    setGameState({status: initialStatus, boardState});
+    const newStatus = getStatus(boardState);
+    setGameState({status: newStatus, boardState});
   }, []);
 
   return [gameState, setBoardState];
