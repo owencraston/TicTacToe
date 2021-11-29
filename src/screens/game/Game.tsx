@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Game;
+export default React.memo(Game);

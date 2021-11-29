@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo, useCallback} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {CIRCLE, CROSS, PlayOptions} from '../../constants';
 import {Circle} from '../circle';
@@ -11,11 +11,11 @@ interface Props {
 }
 
 const Tile = ({index, shape, onPress}: Props) => {
-  const handlePress = () => {
+  const handlePress = useCallback(() => {
     onPress(index);
-  };
+  }, [index, onPress]);
 
-  const getShape = () => {
+  const figure = useMemo(() => {
     switch (shape) {
       case CIRCLE:
         return <Circle colour="black" />;
@@ -24,9 +24,9 @@ const Tile = ({index, shape, onPress}: Props) => {
       default:
         return <Text style={styles.text} onPress={handlePress} />;
     }
-  };
+  }, [handlePress, shape]);
 
-  return <View style={styles.container}>{getShape()}</View>;
+  return <View style={styles.container}>{figure}</View>;
 };
 
 const styles = StyleSheet.create({
