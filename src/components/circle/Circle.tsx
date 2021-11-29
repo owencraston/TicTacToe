@@ -6,17 +6,17 @@ interface Props {
   colour: Color;
 }
 
-const Circle = ({colour}: Props) => (
+const Circle = () => (
   <Svg height={SIZE} width={SIZE}>
     <C
       cx={SIZE / 2}
       cy={SIZE / 2}
       r={(SIZE - 2 * PADDING) / 2}
-      stroke={colour}
+      stroke={'black'}
       strokeWidth={WIDTH}
       fill="transparent"
     />
   </Svg>
 );
 
-export default Circle;
+export default React.memo(Circle);

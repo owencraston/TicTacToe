@@ -11,6 +11,7 @@ interface Props {
 }
 
 const Tile = ({index, shape, onPress}: Props) => {
+  console.log(`Tile ${index} rendered with shape ${shape}`);
   const handlePress = useCallback(() => {
     onPress(index);
   }, [index, onPress]);
@@ -18,9 +19,9 @@ const Tile = ({index, shape, onPress}: Props) => {
   const figure = useMemo(() => {
     switch (shape) {
       case CIRCLE:
-        return <Circle colour="black" />;
+        return <Circle />;
       case CROSS:
-        return <Cross colour="black" />;
+        return <Cross />;
       default:
         return <Text style={styles.text} onPress={handlePress} />;
     }
@@ -28,6 +29,8 @@ const Tile = ({index, shape, onPress}: Props) => {
 
   return <View style={styles.container}>{figure}</View>;
 };
+
+Tile.whyDidYouRender = true;
 
 const styles = StyleSheet.create({
   container: {

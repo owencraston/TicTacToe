@@ -6,14 +6,14 @@ interface Props {
   colour: Color;
 }
 
-const Cross = ({colour}: Props) => (
+const Cross = () => (
   <Svg height={SIZE} width={SIZE}>
     <Line
       x1={PADDING}
       y1={SIZE - PADDING}
       x2={SIZE - PADDING}
       y2={PADDING}
-      stroke={colour}
+      stroke={'black'}
       strokeWidth={WIDTH}
     />
     <Line
@@ -21,7 +21,7 @@ const Cross = ({colour}: Props) => (
       y1={PADDING}
       x2={SIZE - PADDING}
       y2={SIZE - PADDING}
-      stroke={colour}
+      stroke={'black'}
       strokeWidth={WIDTH}
     />
   </Svg>
